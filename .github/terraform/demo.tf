@@ -12,7 +12,7 @@ terraform {
 
 resource "aws_s3_bucket" "s3Bucket" {
   bucket = "shema-cool-tf-bucket"
-  acl    = "public-read"
+  acl    = "private"
 
   policy = <<EOF
 {
