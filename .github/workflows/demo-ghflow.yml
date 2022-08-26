@@ -46,9 +46,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
       - name: add-plan-comment
-        id: comment
         uses: actions/github-script@v3
-        if: github.event_name == 'pull_request' || github.event_name =='push'
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
