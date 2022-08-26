@@ -48,6 +48,7 @@ jobs:
       - name: terraform plan
         uses: dflook/terraform-plan@v1
         with:
+          path: '.github/terraform'
           add_github_comment: true
           
   apply:
