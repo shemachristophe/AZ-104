@@ -21,8 +21,10 @@ provider "aws" {
 
 resource "aws_s3_bucket" "s3Bucket" {
   bucket = "shema-cool-tf-bucket"
-  acl    = "private"
-
+  tags = {
+    Name = "Shema Bucket"
+    Environment = "dev"
+  }
   policy = <<EOF
 {
   "Id": "MakePublic",
@@ -39,6 +41,11 @@ resource "aws_s3_bucket" "s3Bucket" {
   ]
 }
 EOF
+  
+  resource "aws_s3_bucket_acl" "shema-cool-tf-bucket-acl" {
+    bucket = aws_s3_bucket.shema-cool-tf-bucket.id
+    acl    = "private"
+  }
 
   website {
     index_document = "index.html"
