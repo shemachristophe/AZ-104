@@ -47,6 +47,9 @@ jobs:
       
       - name: add-plan-comment
         uses: actions/github-script@v3
+        if: github.event_name == 'pull_request' || github.event_name == 'push'
+        env:
+          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -60,6 +63,8 @@ jobs:
             \`\`\`${process.env.PLAN}\`\`\`
 
             </details>
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
 
             github.issues.createComment({
               issue_number: context.issue.number,
