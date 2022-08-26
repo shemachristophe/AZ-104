@@ -1,13 +1,16 @@
-provider "aws" {
-  version = "~>2.0"
-  region  = "us-west-1"
-}
 terraform {
+  required_version = "~> 1.0"
   backend "s3" {
     bucket = "shema-remote-state-bucket"
     key    = "shema-remote-state-bucket"
     region = "us-west-1"
+    encrypt = true
   }
+}
+
+provider "aws" {
+  version = "~>2.0"
+  region  = "us-west-1"
 }
 
 resource "aws_s3_bucket" "s3Bucket" {
