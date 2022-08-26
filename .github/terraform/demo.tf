@@ -26,28 +26,24 @@ resource "aws_s3_bucket" "s3Bucket" {
     Environment = "dev"
   }
   policy = <<EOF
-{
-  "Id": "MakePublic",
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "s3:GetObject"
-      ],
-      "Effect": "Allow",
-      "Resource": "arn:aws:s3:::shema-cool-tf-bucket/*",
-      "Principal": "*"
-    }
-  ]
+  {
+    "Id": "MakePublic",
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Action": [
+          "s3:GetObject"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:s3:::shema-cool-tf-bucket/*",
+        "Principal": "*"
+      }
+    ]
+  }
+  EOF
 }
-EOF
-  
-  resource "aws_s3_bucket_acl" "shema-cool-tf-bucket-acl" {
-    bucket = aws_s3_bucket.shema-cool-tf-bucket.id
-    acl    = "private"
-  }
 
-  website {
-    index_document = "index.html"
-  }
+resource "aws_s3_bucket_acl" "shema-cool-tf-bucket-acl" {
+  bucket = aws_s3_bucket.shema-cool-tf-bucket.id
+  acl    = "private"
 }
