@@ -2,6 +2,7 @@ terraform {
   required_version = "~> 1.0"
   backend "s3" {
     bucket = "shema-remote2-state-bucket"
+    region = "us-west-1"
     key = "shema-remote2-state-bucket"
     encrypt = true
   }
