@@ -3,7 +3,7 @@ terraform {
   backend "s3" {
     bucket = "shema-remote2-state-bucket"
     key = "shema-remote2-state-bucket"
-    region = "us-west-1"
+    region = var.aws_region
     encrypt = true
   }
   required_providers {
@@ -15,7 +15,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-west-1"
+  region = var.aws_region
 
 }
 
