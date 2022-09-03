@@ -56,4 +56,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: './.github/actions/deploy_ci'
+      - uses: shemachristophe/github/actions/deploy_ci@main
