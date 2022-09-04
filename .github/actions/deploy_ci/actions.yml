@@ -1,3 +1,6 @@
+on:
+  workflow_call:
+
 - name: Terraform Init
   run: terraform init
   working-directory: '.github/terraform'
