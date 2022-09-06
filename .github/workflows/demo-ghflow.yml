@@ -46,7 +46,7 @@ jobs:
           TF_CLI_ARGS: '-var-file="../../.github/terraform/env/dev.tfvars"'
           
       - name: Terraform Show
-        run: terraform show
+        run: terraform show -json
         working-directory: '.github/terraform'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
