@@ -11,14 +11,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Terraform Init
-      shell: bash
-      run: terraform init
-      working-directory: '.github/terraform'
-      env:
-        GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
-        AWS_ACCESS_KEY_ID:  ${{ inputs.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY:  ${{ inputs.AWS_SECRET_ACCESS_KEY }}
       
     - name: Terraform Apply   
       shell: bash
