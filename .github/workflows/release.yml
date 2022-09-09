@@ -1,0 +1,13 @@
+name: Prod Release
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+  
+  jobs:
+    dev:
+      uses: ./.github/workflows/demo-ghflow.yml
