@@ -8,6 +8,6 @@ on:
 
   workflow_dispatch:
   
-  jobs:
-    dev:
-      uses: ./.github/workflows/demo-ghflow.yml
+jobs:
+  dev:
+    uses: ./.github/workflows/demo-ghflow.yml
