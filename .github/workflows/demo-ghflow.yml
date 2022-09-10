@@ -46,12 +46,15 @@ jobs:
           exitcode=$?
           if [[ $exitcode -eq 2 ]]; then 
             echo -e "Changes Detected!"
+            $? = 0
             exit 0
           elif[[ $exitcode -eq 1 ]]; then
             echo -e "Terraform plan error"
+            $? = 0
             exit 0
           else
             echo "No Changes Detected!"
+            $? = 0
             exit 0
           fi
         working-directory: '.github/terraform'
