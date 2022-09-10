@@ -43,9 +43,10 @@ jobs:
         shell: bash
         run: |
           terraform plan -detailed-exitcode -out=plan.out
-          if $ == 2; then 
+          exitcode=$?
+          if [[ $exitcode -eq 2 ]]; then 
             echo "Changes Detected!"
-          elif $ == 1; then
+          elif [[ $exitcode == 1 ]]; then
             echo "error"
           else
             echo "No Changes Detected!"
