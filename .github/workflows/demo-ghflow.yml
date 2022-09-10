@@ -51,6 +51,7 @@ jobs:
           else
             exit $exitcode
           fi
+          echo $exitcode
         working-directory: '.github/terraform'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
