@@ -42,7 +42,7 @@ jobs:
         id: plan_hello
         shell: bash
         run: |
-          terraform plan -detailed-exitcode
+          terraform plan -detailed-exitcode -out=plan.out
           echo $?
         working-directory: '.github/terraform'
         env:
