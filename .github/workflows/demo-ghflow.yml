@@ -45,10 +45,14 @@ jobs:
           terraform plan -detailed-exitcode -out=plan.out
           exitcode=$?
           if [[ $exitcode -eq 2 ]]; then 
-            echo '::set-output name=planHasChanges::true'
+            echo -e "Changes Detected!"
+            exit 0
+          elif[[ $exitcode -eq 1 ]]; then
+            echo -e "Terraform plan error"
             exit 0
           else
             echo "No Changes Detected!"
+            exit 0
           fi
         working-directory: '.github/terraform'
         env:
