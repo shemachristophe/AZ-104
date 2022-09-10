@@ -44,11 +44,11 @@ jobs:
         run: |
           terraform plan -detailed-exitcode -out=plan.out
           if $ == 2; then 
-            echo "Changes Detected!"
+            echo "Changes Detected"
           elif $ == 1; then
             echo "error"
           else
-            echo "No Changes Detected!"
+            echo "No Changes Detected"
           fi
         working-directory: '.github/terraform'
         env:
@@ -66,7 +66,7 @@ jobs:
   apply:
     name: Apply terraform plan
     needs: build
-    if: needs.build.outputs.planExitCode == "Changes Detected!"
+    if: needs.build.outputs.planExitCode == "Changes Detected"
     runs-on: ubuntu-latest
     environment:
       name: dev
