@@ -40,15 +40,16 @@ jobs:
           
       - name: Terraform Plan
         id: plan_hello
+        continue-on-error: true
         shell: bash
         run: |
           terraform plan -detailed-exitcode -out=plan.out
           exitcode=$?
-          if [[ $? -eq 2 ]]; then 
+          if [[ exitcode -eq 2 ]]; then 
             echo -e "Changes Detected!"
             $? = 0
             exit 0
-          elif[[ $? -eq 1 ]]; then
+          elif[[ exitcode -eq 1 ]]; then
             echo -e "Terraform plan error"
             $? = 0
             exit 0
