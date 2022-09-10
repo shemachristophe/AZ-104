@@ -13,6 +13,7 @@ runs:
   steps:
   
     - name: Terraform Init
+      shell: bash
       run: terraform init
       working-directory: '.github/terraform'
       env:
