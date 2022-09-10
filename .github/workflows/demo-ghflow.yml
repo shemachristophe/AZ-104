@@ -2,6 +2,13 @@ name: CI PR
 
 on:
   workflow_call:
+    secrets: 
+      GITHUB_TOKEN:
+        required: true
+      AWS_ACCESS_KEY_ID:
+        required: true
+      AWS_SECRET_ACCESS_KEY_ID:
+        required: true
   
 jobs:
   build:
