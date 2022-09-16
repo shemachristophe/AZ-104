@@ -52,9 +52,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           TF_CLI_ARGS: '-var-file="../../.github/terraform/env/dev.tfvars"'
           
-      - name: Check for Plan Failure
-        if: steps.plan_hello.outputs.planMessage == "Error Detected!"
-        run: exit 1  
+      #- name: Check for Plan Failure
+        #if: steps.plan_hello.outputs.planMessage == "Error Detected!"
+        #run: exit 1  
     
     outputs:
       planExitCode: ${{steps.plan_hello.output.planMessage }}
