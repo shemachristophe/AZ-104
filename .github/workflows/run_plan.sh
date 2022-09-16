@@ -2,7 +2,7 @@
 
 function get_terraform_plan_return_message(){
   exitCode=$(terraform plan -detailed-exitcode)
-  #echo $?
+  echo $exitCode
   #exitCode=$?
   
   if [ $exitCode -eq 2 ]; then
