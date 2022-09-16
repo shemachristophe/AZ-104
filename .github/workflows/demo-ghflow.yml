@@ -40,7 +40,7 @@ jobs:
           
       - name: Terraform Plan
         id: plan_hello
-        continue-on-error: true
+        #continue-on-error: true
         shell: bash
         run: |
           terraform plan -detailed-exitcode -out=plan.out
