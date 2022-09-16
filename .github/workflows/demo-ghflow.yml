@@ -45,15 +45,24 @@ jobs:
         run: |
           terraform plan -detailed-exitcode -out=plan.out
           exitcode=$?
-          echo $exitcode
-          if [$? -eq 2] ; then
-            #echo '::set-output name=planHasChanges::true'
-            echo $exitcode
+          echo "exit code is" $exitcode
+          if [ $? -eq 1 ]
+          then 
+            exit 0 
+          elif [ $? -eq 2 ]
+          then
             exit 0
           else
-            echo $exitcode
-            exit $exitcode
+            exit 0
           fi
+          #if [$? -eq 2] ; then
+            #echo '::set-output name=planHasChanges::true'
+            #echo $exitcode
+            #exit 0
+          #else
+            #echo $exitcode
+            #exit $exitcode
+          #fi
           echo $?
         working-directory: '.github/terraform'
         env:
