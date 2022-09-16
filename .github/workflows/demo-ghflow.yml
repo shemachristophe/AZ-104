@@ -43,7 +43,7 @@ jobs:
         shell: bash
         run: |
           #source .github/workflow/run_plan.sh
-          ./.github/workflows/run_plan.sh
+          source .github/workflows/run_plan.sh
           planMessage=$?
         #continue-on-error: true
         working-directory: '.github/terraform'
