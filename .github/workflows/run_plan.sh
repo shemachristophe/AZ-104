@@ -18,9 +18,9 @@ function get_terraform_plan_return_message(){
 function name_func(){
   a=1
   b=1
-  $a+$b
-  echo $?
-  exitCode=$?
+  sum=$(($a+$b))
+  echo $sum
+  exitCode=$sum
   if [ $exitCode -eq 2 ]; then
     echo 'Changes Detected!'
   elif [ $exitCode -eq 1 ]; then
