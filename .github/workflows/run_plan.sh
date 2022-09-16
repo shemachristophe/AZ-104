@@ -16,7 +16,9 @@ function get_terraform_plan_return_message(){
 
 
 function name_func(){
-  1+1
+  a=1
+  b=1
+  $a+$b
   echo $?
   exitCode=$?
   if [ $exitCode -eq 2 ]; then
