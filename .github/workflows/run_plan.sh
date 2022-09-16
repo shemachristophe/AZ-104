@@ -1,8 +1,8 @@
 #! /usr/bin/env bash
 
 function get_terraform_plan_return_message(){
-  terraform plan -detailed-exitcode
-  exitCode=$?
+  exitCode = terraform plan -detailed-exitcode
+  #exitCode=$?
   
   if [ $exitCode -eq 2 ]; then
     echo 'Changes Detected!'
