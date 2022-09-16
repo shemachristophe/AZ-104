@@ -41,8 +41,10 @@ jobs:
       - name: Terraform Plan
         id: plan_hello
         shell: bash
-        run: terraform plan -detailed-exitcode
-        continue-on-error: true
+        run: |
+          #source .github/workflow/run_plan.sh
+          planMessage = .github/workflows/run_plan.sh
+        #continue-on-error: true
         working-directory: '.github/terraform'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -51,11 +53,11 @@ jobs:
           TF_CLI_ARGS: '-var-file="../../.github/terraform/env/dev.tfvars"'
           
       - name: Check for Plan Failure
-        if: steps.plan_hello.outputs.exitcode == 1
+        if: steps.plan_hello.outputs.planMessage == "Error Detected!"
         run: exit 1  
     
     outputs:
-      planExitCode: ${{steps.plan_hello.output.exitcode }}
+      planExitCode: ${{steps.plan_hello.output.planMessage }}
         #if: steps.plan_hello.outcome ==1
           
           
@@ -63,7 +65,7 @@ jobs:
   apply:
     name: Apply terraform plan
     needs: build
-    if: needs.build.outputs.planExitCode == 2
+    if: needs.build.outputs.planExitCode == "Changes Detected!"
     runs-on: ubuntu-latest
     environment:
       name: dev
