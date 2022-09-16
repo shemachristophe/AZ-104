@@ -44,8 +44,8 @@ jobs:
         run: |
           #source ../../.github/workflow/run_plan.sh
           source ../../.github/workflows/run_plan.sh
-          planMessage=$get_terraform_plan_return_message
-          echo $planMessage
+          get_terraform_plan_return_message
+          echo $?
         #continue-on-error: true
         working-directory: '.github/terraform'
         env:
