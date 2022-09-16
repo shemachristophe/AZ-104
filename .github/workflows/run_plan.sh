@@ -2,6 +2,7 @@
 
 function get_terraform_plan_return_message(){
   terraform plan -detailed-exitcode
+  echo $?
   exitCode=$?
   
   if [ $exitCode -eq 2 ]; then
