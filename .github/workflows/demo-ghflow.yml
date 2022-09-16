@@ -81,7 +81,7 @@ jobs:
   apply:
     name: Apply terraform plan
     needs: build
-    if: needs.build.outputs.planExitCode == 'Changes Detected!'
+    if: needs.build.outputs.planExitCode == 2
     runs-on: ubuntu-latest
     environment:
       name: dev
