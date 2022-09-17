@@ -4,11 +4,11 @@ function get_terraform_plan_return_message(){
   set +e
   #exitCode='$(terraform plan -detailed-exitcode)'
   #terraform plan -detailed-exitcode -out changes.json
-  terraform plan -detailed-exitcode -out plan.tfplan &> plan.out
-  #terraform plan -detailed-exitcode -out plan.tfplan 1>stdout 2>stderr
-  echo 'err' &2
+  #terraform plan -detailed-exitcode -out plan.tfplan &> plan.out
+  terraform plan -detailed-exitcode -out plan.tfplan 1>stdout 2>err.txt
+  #echo 'err' &2
   exitCode=$?
-  #cat stdout
+  cat err.txt
   #echo'_------------------_'
   #cat stderr
   #echo 'exitCode is: ' $exitCode
@@ -28,7 +28,7 @@ function get_terraform_plan_return_message(){
 
   # Check if resources destroyed. If yes, require approvals
   else 
-    echo "::set-output name=stdout::$(cat ./stdout)"
+    #echo "::set-output name=stdout::$(cat ./stdout)"
     echo "##[section]Terraform apply requires manual approval";
     echo "##vso[task.setvariable variable=approvalRequired;isOutput=true]true"
   fi
