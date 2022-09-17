@@ -1,12 +1,13 @@
 #! /usr/bin/env bash
 
 function get_terraform_plan_return_message(){
-  set +e
+  set -e
   #exitCode='$(terraform plan -detailed-exitcode)'
   #terraform plan -detailed-exitcode -out changes.json
-  terraform plan -detailed-exitcode -out plan.tfplan &> plan.out
+  #terraform plan -detailed-exitcode -out plan.tfplan &> plan.out
+  terraform plan -detailed-exitcode -out plan.tfplan 2>&1
   exitCode=$?
-  cat plan.out 
+  cat plan.tfplan 
   #echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
   #exitCode=$?
