@@ -9,7 +9,7 @@ function get_terraform_plan_return_message(){
   #echo 'err' &2
   read $plan.txt
   #sed -i 's/Error: Terraform exited with code 2./State Change Detected! Terraform exited with code 2/' plan.txt
-  cat $plan.txt
+  cat greatPlan
   exitCode=$?
   OLD="Error: Terraform exited with code 2."
   NEW="State Change Detected! Terraform exited with code 2."
@@ -24,11 +24,11 @@ function get_terraform_plan_return_message(){
   
   
   
-  if terraform show plan.out | grep -q " 0 to add, 0 to change, 0 to destroy"; then 
+  if terraform show greatPlan | grep -q " 0 to add, 0 to change, 0 to destroy"; then 
   echo "##[section]No changes, terraform apply will not run";
 
   # Check if resources destroyed. If no, don't require approval
-  elif terraform show plan.out | grep -q "to change, 0 to destroy"; then 
+  elif terraform show greatPlan | grep -q "to change, 0 to destroy"; then 
     echo "##[section]Approval not required";
     echo "##[section]Automatic terraform apply triggered";
     echo "##vso[task.setvariable variable=approvalRequired;isOutput=true]false"
