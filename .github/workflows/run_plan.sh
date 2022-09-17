@@ -5,7 +5,7 @@ function get_terraform_plan_return_message(){
   #exitCode='$(terraform plan -detailed-exitcode)'
   #terraform plan -detailed-exitcode -out changes.json
   #terraform plan -detailed-exitcode -out plan.tfplan &> plan.out
-  terraform plan -detailed-exitcode -out plan.tfplan 1>stdout 2>err.txt
+  terraform plan -detailed-exitcode -out plan.tfplan 1>stdout 2>err.txt | grep 'Error: Terraform exited with code 2.' &> /dev/null && echo 'Terraform exit Code 2: Changes Detected!'
   #echo 'err' &2
   exitCode=$?
   cat stdout
