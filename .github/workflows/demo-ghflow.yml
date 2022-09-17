@@ -73,8 +73,6 @@ jobs:
     needs: build
     if: needs.build.outputs.planExitCode == 'Changes Detected!'
     runs-on: ubuntu-latest
-    environment:
-      name: dev
 
     
     steps:
