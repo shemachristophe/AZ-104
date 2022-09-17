@@ -2,16 +2,18 @@
 
 function get_terraform_plan_return_message(){
   #exitCode='$(terraform plan -detailed-exitcode)'
-  terraform plan -detailed-exitcode -out changes.json
+  #terraform plan -detailed-exitcode -out changes.json
+  terraform plan ${{ inputs.TF_VARS }} -detailed-exitcode -out=deploy_${{ github.run_number }}.tfplan ${{ steps.SetTerraformDestroyFlag.outputs.destroyFlag }}
   exitCode=$?
-  terraform show -json changes.json
+  #terraform show -json changes.json
   #echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
   #exitCode=$?
   
   if [ $? -eq 2 ]; then
-    echo 'Changes Detected!'
-    exit "0"
+    #echo 'Changes Detected!'
+    echo '::set-output name=planHasChanges::true'
+    exit 0
   elif [ $? -eq 1 ]; then
     echo 'Error Detected!'
     exit "0"
