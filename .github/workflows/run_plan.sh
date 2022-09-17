@@ -2,8 +2,9 @@
 
 function get_terraform_plan_return_message(){
   #exitCode='$(terraform plan -detailed-exitcode)'
-  terraform plan -detailed-exitcode -o=changes.json
-  #exitCode=$?
+  terraform plan -detailed-exitcode -out changes.json
+  exitCode=$?
+  terraform show -json changes.json
   #echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
   #exitCode=$?
