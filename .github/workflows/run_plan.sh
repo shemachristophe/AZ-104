@@ -3,7 +3,7 @@
 function get_terraform_plan_return_message(){
   #exitCode='$(terraform plan -detailed-exitcode)'
   #terraform plan -detailed-exitcode -out changes.json
-  terraform plan ${{ inputs.TF_VARS }} -detailed-exitcode -out=deploy_${{ github.run_number }}.tfplan ${{ steps.SetTerraformDestroyFlag.outputs.destroyFlag }}
+  terraform plan -detailed-exitcode || true
   exitCode=$?
   #terraform show -json changes.json
   #echo 'exitCode is: ' $exitCode
