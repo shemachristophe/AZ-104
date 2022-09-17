@@ -4,28 +4,28 @@ function get_terraform_plan_return_message(){
   set +e
   #exitCode='$(terraform plan -detailed-exitcode)'
   #terraform plan -detailed-exitcode -out changes.json
-  terraform plan -detailed-exitcode || true
+  terraform plan -detailed-exitcode -out plan.out || true
   exitCode=$?
   #terraform show -json changes.json
   #echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
   #exitCode=$?
   
-  if [ $? == 'Error: Terraform exited with code 2.' ]; then
-    #echo 'Changes Detected!'
-    echo '::set-output name=exitCode::Changes Detected!'
-    echo '::set-output name=stdout::0'
-    echo '::set-output name=stderr::0'
-    exit 0
-  elif [ $? -eq 1 ]; then
-    echo '::set-output name=stdout::0'
-    echo '::set-output name=stderr::0'
-    echo '::set-output name=exitCode::true'
-    echo 'Error Detected!'
-    exit 0
-  else
-    echo 'No Changes Detected!'
-    exit 0
+  
+  
+  if terraform show plan.out | grep -q " 0 to add, 0 to change, 0 to destroy"; then 
+  echo "##[section]No changes, terraform apply will not run";
+
+  # Check if resources destroyed. If no, don't require approval
+  elif terraform show plan.out | grep -q "to change, 0 to destroy"; then 
+    echo "##[section]Approval not required";
+    echo "##[section]Automatic terraform apply triggered";
+    echo "##vso[task.setvariable variable=approvalRequired;isOutput=true]false"
+
+  # Check if resources destroyed. If yes, require approvals
+  else 
+    echo "##[section]Terraform apply requires manual approval";
+    echo "##vso[task.setvariable variable=approvalRequired;isOutput=true]true"
   fi
 }
 
