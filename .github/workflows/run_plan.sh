@@ -4,7 +4,7 @@ function get_terraform_plan_return_message(){
   set +e
   #exitCode='$(terraform plan -detailed-exitcode)'
   #terraform plan -detailed-exitcode -out changes.json
-  terraform plan -detailed-exitcode -out plan.out || true
+  terraform plan -detailed-exitcode -out plan.out &> plan.out
   exitCode=$?
   #terraform show -json changes.json
   #echo 'exitCode is: ' $exitCode
