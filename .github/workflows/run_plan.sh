@@ -12,13 +12,11 @@ function get_terraform_plan_return_message(){
   #sed -i 's/Error: Terraform exited with code 2./State Change Detected! Terraform exited with code 2/' plan.txt
   OLD="Error: Terraform exited with code 2."
   NEW="State Change Detected! Terraform exited with code 2."
-  sed -i "s/$OLD/$NEW/g" 'plan.out'
-  sed -i "s/$OLD/$NEW/g" stdout
-  echo 'Printing plan.out............'
-  cat 'plan.out'
+  sed -i "s/$OLD/$NEW/g" 'plan.msg'
+  
   exitCode=$?
-  echo 'Printing stdout............'
-  cat stdout
+  echo 'Printing plan.msg............'
+  cat 'plan.msg'
   #cat stdout
   #terraform show -json 
   #echo'_------------------_'
