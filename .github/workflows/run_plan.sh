@@ -27,6 +27,7 @@ function get_terraform_plan_return_message(){
 
   # Check if resources destroyed. If yes, require approvals
   else 
+    echo "::set-output name=stdout::$(cat ./stdout)"
     echo "##[section]Terraform apply requires manual approval";
     echo "##vso[task.setvariable variable=approvalRequired;isOutput=true]true"
   fi
