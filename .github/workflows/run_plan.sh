@@ -7,8 +7,8 @@ function get_terraform_plan_return_message(){
   #terraform plan -detailed-exitcode -out plan.tfplan &> plan.out
   terraform plan -detailed-exitcode -out plan.tfplan 1>stdout 2>stderr
   exitCode=$?
-  cat stdout
-  echo'_------------------_'
+  #cat stdout
+  #echo'_------------------_'
   #cat stderr
   #echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
