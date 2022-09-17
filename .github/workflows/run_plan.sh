@@ -9,7 +9,7 @@ function get_terraform_plan_return_message(){
   exitCode=$?
   cat stdout
   echo'_------------------_'
-  cat stderr
+  #cat stderr
   #echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
   #exitCode=$?
