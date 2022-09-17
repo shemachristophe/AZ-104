@@ -11,7 +11,7 @@ function get_terraform_plan_return_message(){
   echo '$? is: ' $?
   #exitCode=$?
   
-  if [ $? -eq 2 ]; then
+  if [ $? == 'Error: Terraform exited with code 2.' ]; then
     #echo 'Changes Detected!'
     echo '::set-output name=exitCode::Changes Detected!'
     echo '::set-output name=stdout::0'
