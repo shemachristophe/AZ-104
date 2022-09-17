@@ -10,10 +10,12 @@ function get_terraform_plan_return_message(){
   #echo 'err' &2
   #read $plan.txt
   #sed -i 's/Error: Terraform exited with code 2./State Change Detected! Terraform exited with code 2/' plan.txt
+  demoString="Plan: 0 to add, 1 to change, 0 to destroy."
+  IFS=', ' read -r -a array <<< "$demoString"
   OLD="Error: Terraform exited with code 2."
   NEW="State Change Detected! Terraform exited with code 2."
   sed -i "s/$OLD/$NEW/g" 'plan.msg'
-  
+  echo 'IFS is :' $IFS
   exitCode=$?
   echo 'Printing plan.msg............'
   cat 'plan.msg'
