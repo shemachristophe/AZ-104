@@ -11,13 +11,13 @@ function get_terraform_plan_return_message(){
   
   if [ $? -eq 2 ]; then
     echo 'Changes Detected!'
-    exit 0
+    exit "0"
   elif [ $? -eq 1 ]; then
     echo 'Error Detected!'
-    exit 0
+    exit "0"
   else
     echo 'No Changes Detected!'
-    exit 0
+    exit "0"
   fi
 }
 
