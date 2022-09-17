@@ -15,9 +15,11 @@ function get_terraform_plan_return_message(){
     #echo 'Changes Detected!'
     echo '::set-output name=exitCode::Changes Detected!'
     echo '::set-output name=stdout::0'
+    echo '::set-output name=stderr::0'
     exit 0
   elif [ $? -eq 1 ]; then
     echo '::set-output name=stdout::0'
+    echo '::set-output name=stderr::0'
     echo '::set-output name=exitCode::true'
     echo 'Error Detected!'
     exit 0
