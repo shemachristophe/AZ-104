@@ -1,9 +1,9 @@
 #! /usr/bin/env bash
 
 function get_terraform_plan_return_message(){
-  #exitCode='$(terraform plan -detailed-exitcode)'
-  terraform plan -detailed-exitcode
-  exitCode=$?
+  exitCode='$(terraform plan -detailed-exitcode)'
+  #terraform plan -detailed-exitcode
+  #exitCode=$?
   echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
   #exitCode=$?
