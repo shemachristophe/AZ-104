@@ -12,17 +12,17 @@ function get_terraform_plan_return_message(){
   #read $plan.txt
   #sed -i 's/Error: Terraform exited with code 2./State Change Detected! Terraform exited with code 2/' plan.txt
   demoString="Plan: 0 to add, 1 to change, 0 to destroy."
-  IFS=',' 
-  read -a Arr <<< "$demoString"
-  OLD="Error: Terraform exited with code 2."
-  NEW="State Change Detected! Terraform exited with code 2."
-  sed -i "s/$OLD/$NEW/g" 'plan.msg'
-  echo 'To Add:' ${demoString[0]} 
-  echo 'To Change:' ${demoString[1]} 
-  echo 'To Destroy:' ${demoString[2]} 
+  IFS=', ' 
+  read -a tfArr <<< "$demoString"
+  #OLD="Error: Terraform exited with code 2."
+  #NEW="State Change Detected! Terraform exited with code 2."
+  #sed -i "s/$OLD/$NEW/g" 'plan.msg'
+  echo 'To Add:' ${tfArr[0]} 
+  echo 'To Change:' ${tfArr[1]} 
+  echo 'To Destroy:' ${tfArr[2]} 
   exitCode=$?
-  echo 'Printing plan.msg............'
-  cat 'plan.msg'
+  #echo 'Printing plan.msg............'
+  #cat 'plan.msg'
   #cat stdout
   #terraform show -json 
   #echo'_------------------_'
