@@ -1,6 +1,38 @@
 #! /usr/bin/env bash
 
+# Bold
+BBlack='\033[1;30m'       # Black
+BRed='\033[1;31m'         # Red
+BGreen='\033[1;32m'       # Green
+BYellow='\033[1;33m'      # Yellow
+BBlue='\033[1;34m'        # Blue
+BPurple='\033[1;35m'      # Purple
+BCyan='\033[1;36m'        # Cyan
+BWhite='\033[1;37m'       # White
+
 function get_terraform_plan_return_message(){
+  runTFCmd=$(terraform plan)
+  runTFCmd>planMsg.txt
+  getPlanText=$(grep "Plan" 'planMsg.txt')
+  IFS=',' read -a tfArr <<< "$getPlanText"  
+  
+  toAdd=$(echo ${tfArr[0]} | sed 's/[^0-9]*//g') ;
+  toChange=$(echo ${tfArr[1]} | sed 's/[^0-9]*//g') ;
+  toDestroy=$(echo ${tfArr[2]} | sed 's/[^0-9]*//g') ;
+  
+  echo "toAdd variable:$toAdd"
+    echo "toChange variable:$toChange"
+    echo "toDestroy variable:$toDestroy"
+  
+  if [ $toAdd -eq 0 ] && [ $toChange -eq 0 ] && [ $toDestroy -eq 0 ]; then
+    echo -e "${BGreen}No Change detected!"
+  else
+    echo -e "${BBlue}State Change detected!"
+  fi
+}
+
+
+function get_terraform_plan_return_messages(){
   set +e
   #exitCode='$(terraform plan -detailed-exitcode)'
   #terraform plan -detailed-exitcode -out changes.json
