@@ -13,7 +13,7 @@ function get_terraform_plan_return_message(){
   #cat stderr
   #echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
-  exitCode=$?
+  #exitCode=$?
   
   
   
@@ -30,7 +30,7 @@ function get_terraform_plan_return_message(){
   else 
     //echo "::set-output name=stdout::$(cat ./err.txt)"
     //cat err
-    echo "::set-output name=exitcode::$exitCode"
+    #echo "::set-output name=exitcode::$exitCode"
     echo "##[section]Terraform apply requires manual approval";
     echo "##vso[task.setvariable variable=approvalRequired;isOutput=true]true"
   fi
