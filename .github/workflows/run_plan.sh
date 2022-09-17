@@ -2,6 +2,7 @@
 
 function get_terraform_plan_return_message(){
   exitCode='$(terraform plan -detailed-exitcode)'
+  terraform plan -detailed-exitcode
   echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
   #exitCode=$?
