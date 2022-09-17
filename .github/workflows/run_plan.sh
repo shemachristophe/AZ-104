@@ -7,9 +7,9 @@ function get_terraform_plan_return_message(){
   #terraform plan -detailed-exitcode -out plan.tfplan &> plan.out
   terraform plan -detailed-exitcode > plan.txt 1>stdout 2>err.txt 
   #echo 'err' &2
-  read plan.txt
+  read $plan.txt
   #sed -i 's/Error: Terraform exited with code 2./State Change Detected! Terraform exited with code 2/' plan.txt
-  cat plan.txt
+  cat $plan.txt
   exitCode=$?
   #cat stdout
   #terraform show -json plan.out
