@@ -1,19 +1,22 @@
 #! /usr/bin/env bash
 
 function get_terraform_plan_return_message(){
-  exitCode='$(terraform plan -detailed-exitcode)'
-  #terraform plan -detailed-exitcode
+  #exitCode='$(terraform plan -detailed-exitcode)'
+  terraform plan -detailed-exitcode
   #exitCode=$?
-  echo 'exitCode is: ' $exitCode
+  #echo 'exitCode is: ' $exitCode
   echo '$? is: ' $?
   #exitCode=$?
   
   if [ $? -eq 2 ]; then
     echo 'Changes Detected!'
+    exit 0
   elif [ $? -eq 1 ]; then
     echo 'Error Detected!'
+    exit 0
   else
     echo 'No Changes Detected!'
+    exit 0
   fi
 }
 
