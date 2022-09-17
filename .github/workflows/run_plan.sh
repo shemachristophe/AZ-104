@@ -15,11 +15,12 @@ function get_terraform_plan_return_message(){
     echo '::set-output name=planHasChanges::true'
     exit 0
   elif [ $? -eq 1 ]; then
+    echo '::set-output name=planHasChanges::true'
     echo 'Error Detected!'
-    exit "0"
+    exit 0
   else
     echo 'No Changes Detected!'
-    exit "0"
+    exit 0
   fi
 }
 
