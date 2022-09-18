@@ -15,7 +15,7 @@ function get_terraform_plan_return_message(){
   #$runTFCmd>'planMsg.txt'
   cat 'planMsg.txt'
   getPlanText=$(grep "Plan" 'planMsg.txt')
-  valResult=$(echo "line is: $getPlanText")
+  valResult=$(echo "$getPlanText")
   echo " $valResult"
   IFS=',' read -a tfArr <<< "$getPlanText"  
   
