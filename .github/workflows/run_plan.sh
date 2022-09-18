@@ -17,7 +17,7 @@ function get_terraform_plan_return_message(){
   getPlanText=$(grep "Plan" 'planMsg.txt')
   planTextResult=$(echo $getPlanText | sed "s/, /,/g")
   
-  resulty=$(echo "$getPlanText")
+  resulty=$(echo "line is: $getPlanText")
   echo $resulty
   IFS=',' read -a tfArr <<< "$result"  
   
