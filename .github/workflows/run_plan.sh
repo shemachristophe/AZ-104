@@ -15,15 +15,14 @@ function get_terraform_plan_return_message(){
   #$runTFCmd>'planMsg.txt'
   cat 'planMsg.txt'
   getPlanText=$(grep "Plan" 'planMsg.txt')
-  valResult=$(echo "$getPlanText")
+  valResult=$(echo "$getPlanText");
   
   echo "-----------valResult start-------------"
   echo "$valResult"
   echo "-----------valResult end-------------"
   semoString=$(echo $demoString | sed "s/, /,/g")
   #IFS=',' read -a tfArr <<< "$semoString"  
-  IFS=', ' 
-  read -a tfArr <<< '$(echo $demoString | sed "s/, /,/g")'
+  IFS=', ' read -a tfArr <<< '$(echo $demoString | sed "s/, /,/g")';
   
   toAdd=$(echo ${tfArr[0]} | sed 's/[^0-9]*//g') ;
   toChange=$(echo ${tfArr[1]} | sed 's/[^0-9]*//g') ;
