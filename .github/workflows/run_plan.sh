@@ -21,6 +21,12 @@ function get_terraform_plan_return_message(){
   echo "$valResult"
   echo "-----------valResult end-------------"
   semoString=$(echo $demoString | sed "s/, /,/g")
+  
+  echo "-----------semoString start-------------"
+  echo "$semoString"
+  echo "-----------semoString end-------------"
+  
+  
   #IFS=',' read -a tfArr <<< "$semoString"  
   IFS=', ' read -a tfArr <<< "$(echo "$semoString")"
   
