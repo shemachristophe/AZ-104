@@ -15,16 +15,18 @@ function get_terraform_plan_return_message(){
   #$runTFCmd>'planMsg.txt'
   cat 'planMsg.txt'
   getPlanText=$(grep "Plan" 'planMsg.txt')
+  planTextResult=$(echo $getPlanText | sed "s/, /,/g")
+  
   echo "line is: $getPlanText"
-  IFS=',' read -a tfArr <<< "$getPlanText"  
+  IFS=',' read -a tfArr <<< "$planTextResult"  
   
   toAdd=$(echo ${tfArr[0]} | sed 's/[^0-9]*//g') ;
   toChange=$(echo ${tfArr[1]} | sed 's/[^0-9]*//g') ;
   toDestroy=$(echo ${tfArr[2]} | sed 's/[^0-9]*//g') ;
   
   echo "toAdd variable:$toAdd"
-    echo "toChange variable:$toChange"
-    echo "toDestroy variable:$toDestroy"
+  echo "toChange variable:$toChange"
+  echo "toDestroy variable:$toDestroy"
   
   if [ $toAdd -eq 0 ] && [ $toChange -eq 0 ] && [ $toDestroy -eq 0 ]; then
     echo -e "${BGreen}No Change detected!"
