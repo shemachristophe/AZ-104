@@ -13,8 +13,9 @@ BWhite='\033[1;37m'       # White
 function get_terraform_plan_return_message(){
   terraform plan > 'planMsg.txt'
   #$runTFCmd>'planMsg.txt'
+  cat 'planMsg.txt'
   getPlanText=$(grep "Plan" 'planMsg.txt')
-  echo 'line is: $getPlanText'
+  echo "line is: $getPlanText"
   IFS=',' read -a tfArr <<< "$getPlanText"  
   
   toAdd=$(echo ${tfArr[0]} | sed 's/[^0-9]*//g') ;
