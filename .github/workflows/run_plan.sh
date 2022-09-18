@@ -28,7 +28,7 @@ function get_terraform_plan_return_message(){
   echo "toAdd variable:$toAdd"
   echo "toChange variable:$toChange"
   echo "toDestroy variable:$toDestroy"
-  cat 'planMsg.txt'
+  #cat 'planMsg.txt'
   if [ $toAdd -eq 0 ] && [ $toChange -eq 0 ] && [ $toDestroy -eq 0 ]; then
     echo -e "${BGreen}No Change detected!"
   else
