@@ -13,22 +13,19 @@ BWhite='\033[1;37m'       # White
 function get_terraform_plan_return_message(){
   terraform plan > 'planMsg.txt'
   #$runTFCmd>'planMsg.txt'
-  
+  cat 'planMsg.txt'
   getPlanText=$(grep "Plan" 'planMsg.txt')
-  planTextResult=$(echo $getPlanText | sed "s/, /,/g")
-  
-  resulty=$(echo "line is: $getPlanText")
-  echo $resulty
-  IFS=',' read -a tfArr <<< "$result"  
+  echo "line is: $getPlanText"
+  IFS=',' read -a tfArr <<< "$getPlanText"  
   
   toAdd=$(echo ${tfArr[0]} | sed 's/[^0-9]*//g') ;
   toChange=$(echo ${tfArr[1]} | sed 's/[^0-9]*//g') ;
   toDestroy=$(echo ${tfArr[2]} | sed 's/[^0-9]*//g') ;
   
   echo "toAdd variable:$toAdd"
-  echo "toChange variable:$toChange"
-  echo "toDestroy variable:$toDestroy"
-  #cat 'planMsg.txt'
+    echo "toChange variable:$toChange"
+    echo "toDestroy variable:$toDestroy"
+  
   if [ $toAdd -eq 0 ] && [ $toChange -eq 0 ] && [ $toDestroy -eq 0 ]; then
     echo -e "${BGreen}No Change detected!"
   else
