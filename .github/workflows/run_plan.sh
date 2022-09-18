@@ -11,8 +11,8 @@ BCyan='\033[1;36m'        # Cyan
 BWhite='\033[1;37m'       # White
 
 function get_terraform_plan_return_message(){
-  runTFCmd=$(terraform plan)
-  $runTFCmd>'planMsg.txt'
+  terraform plan > 'planMsg.txt'
+  #$runTFCmd>'planMsg.txt'
   getPlanText=$(grep "Plan" 'planMsg.txt')
   IFS=',' read -a tfArr <<< "$getPlanText"  
   
