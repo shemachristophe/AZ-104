@@ -28,7 +28,7 @@ function get_terraform_plan_return_message(){
   
   
   #IFS=',' read -a tfArr <<< "$semoString"  
-  IFS='(, )' read -a tfArr <<< "$semoString"
+  IFS=',' read -a tfArr <<< "$semoString"
   
   echo "yooo: ${tfArr[0]}"
   toAdd=$(echo "${tfArr[0]}" | sed 's/[^0-9]*//g');
