@@ -42,7 +42,8 @@ function get_terraform_plan_return_message(){
   if [ $toAdd -eq 0 ] && [ $toChange -eq 0 ] && [ $toDestroy -eq 0 ]; then
     echo -e "${BGreen}No Change detected!"
   else
-    echo -e "${BBlue}State Change detected!"
+    echo "Zion: $valResult"
+    #echo -e "${BBlue}State Change detected!"
   fi
 }
 
