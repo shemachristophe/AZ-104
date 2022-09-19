@@ -52,7 +52,7 @@ function get_terraform_plan_return_message(){
   #        run: echo ::set-output name=docker_tag::$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}
   if [ -z "$isPlanChanged" ]
   then
-        echo -e "${BBlue}::set-output name=SELECTED_COLOR::State Change Detected!"
+        echo -e "${BBlue}State Change Detected!"
   else
         #echo ::set-output name=planExitMsg::$(${BGreen}No Changes Detected!})
         echo -e "${BGreen}No Changes Detected!"
