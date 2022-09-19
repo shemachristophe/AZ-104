@@ -35,7 +35,7 @@ function get_terraform_plan_return_message(){
   
   toAdd=echo "${planA//[^0-9]/}"
   toChange=echo "${planC//[^0-9]/}"
-  toChange=echo "${planD//[^0-9]/}"
+  toDestroy=echo "${planD//[^0-9]/}"
   
   #toAdd=$(echo "${tfArr[0]}" | sed 's/[^0-9]*//g');
   #toChange=$(echo "${tfArr[1]}" | sed 's/[^0-9]*//g');
