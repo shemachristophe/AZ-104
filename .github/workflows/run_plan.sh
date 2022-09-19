@@ -11,6 +11,7 @@ BCyan='\033[1;36m'        # Cyan
 BWhite='\033[1;37m'       # White
 
 function get_terraform_plan_return_message(){
+  set +e
   terraform plan > 'planMsg.txt'
   #$runTFCmd>'planMsg.txt'
   cat 'planMsg.txt'
@@ -44,7 +45,7 @@ function get_terraform_plan_return_message(){
   #echo "toDestroy variable: $toDestroy"
   
   noStateChange="No changes"
-  isPlanChanged=$(grep -q "$noStateChange" 'planMsg.txt' || true)
+  isPlanChanged=$(grep -q "$noStateChange" 'planMsg.txt')
   echo "isPlanChanged $isPlanChanged"
   #$ echo "anything" | { grep e || true; }
   
