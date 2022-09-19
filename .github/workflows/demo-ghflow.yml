@@ -42,15 +42,13 @@ jobs:
         id: plan_hello
         shell: bash
         run: |
-          #source ../../.github/workflow/run_plan.sh
+          +e
           source ../../.github/workflows/run_plan.sh
-          #planMessage='$(get_terraform_plan_return_message)'
-          get_terraform_plan_return_message
-          #echo 'func message: ' $?
-          #name_func
-          #echo $?
+          get_terraform_plan_return_message > planFile
+          noStateChange="No changes"
+          isPlanChanged=$(grep "$noStateChange" 'planFile')
+          echo "::set-output name=planMsg::$isPlanChanged"
           
-        #continue-on-error: true
         working-directory: '.github/terraform'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -71,7 +69,7 @@ jobs:
   apply:
     name: Apply terraform plan
     needs: build
-    if: needs.build.outputs.planExitCode == 'Changes Detected!'
+    if: needs.build.outputs.planExitCode == 'State Change detected!'
     runs-on: ubuntu-latest
 
     
