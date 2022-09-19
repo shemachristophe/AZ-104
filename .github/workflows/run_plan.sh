@@ -14,7 +14,9 @@ function get_terraform_plan_return_message(){
   set +e
   terraform plan > 'planMsg.txt'
   #$runTFCmd>'planMsg.txt'
-  cat 'planMsg.txt'
+  
+  #cat 'planMsg.txt'
+  
   #getPlanText=$(grep "Plan" 'planMsg.txt')
   
   #semoString=$(echo "$getPlanText" | sed "s/, /,/g" )
