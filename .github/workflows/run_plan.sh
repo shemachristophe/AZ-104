@@ -48,12 +48,13 @@ function get_terraform_plan_return_message(){
   isPlanChanged=$(grep "$noStateChange" 'planMsg.txt')
   #echo "isPlanChanged $isPlanChanged"
   #$ echo "anything" | { grep e || true; }
+  #echo '::set-output name=SELECTED_COLOR::green'
   
   if [ -z "$isPlanChanged" ]
   then
-        echo -e "${BBlue}State Change detected!"
+        echo -e "${BBlue}::set-output name=SELECTED_COLOR::State Change Detected!"
   else
-        echo -e "${BGreen}$isPlanChanged"
+        echo -e "${BGreen}::set-output name=SELECTED_COLOR::No Changes Detected!"
   fi
   
   #if [ "$toAdd" -eq 0 ] && [ "$toChange" -eq 0 ] && [ "$toDestroy" -eq 0 ]; then
