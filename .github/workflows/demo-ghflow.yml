@@ -47,6 +47,10 @@ jobs:
           planMessage=$?
           
           echo "::set-output name=planMsg::$planMessage"
+          echo "printing output"
+          echo "$?"
+          echo "planMessage: $planMessage"
+          echo "planMsg $planMsg"
           
         working-directory: '.github/terraform'
         env:
