@@ -48,7 +48,7 @@ function get_terraform_plan_return_message(){
   echo "isPlanChanged $isPlanChanged"
   #$ echo "anything" | { grep e || true; }
   
-  if [ "$isPlanChanged" = "" ]
+  if [ -z "$isPlanChanged" ]
   then
         echo -e "${BBlue}State Change detected!"
   else
