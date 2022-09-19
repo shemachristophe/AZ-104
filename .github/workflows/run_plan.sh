@@ -20,7 +20,7 @@ function get_terraform_plan_return_message(){
   echo "-----------valResult start-------------"
   echo "$valResult"
   echo "-----------valResult end-------------"
-  semoString=$(echo $valResult | sed "s/, /,/g" )
+  semoString=$(echo "$getPlanText" | sed "s/, /,/g" )
   
   echo "-----------semoString start-------------"
   echo "$semoString"
