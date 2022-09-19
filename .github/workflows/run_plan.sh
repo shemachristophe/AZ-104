@@ -18,16 +18,14 @@ function get_terraform_plan_return_message(){
   
   semoString=$(echo "$getPlanText" | sed "s/, /,/g" )
   
-  echo "-----------semoString start-------------"
-  echo "$semoString"
-  echo "-----------semoString end-------------"
+  #echo "-----------semoString start-------------"
+  #echo "$semoString"
+  #echo "-----------semoString end-------------"
   
   
   #IFS=',' read -a tfArr <<< "$semoString"  
   IFS=',' read -a tfArr <<< "$semoString"
   
-  #$ STRING="The store is 12 miles away." ; echo "${STRING//[!0-9]/}"
-  #$ NUMBER=$(echo "The store is 12 miles away." | grep -o -E '[0-9]+') ; echo $NUMBER
   
   #toAdd=$(echo "${tfArr[0]}" | sed 's/[^0-9]*//g');
   #toChange=$(echo "${tfArr[1]}" | sed 's/[^0-9]*//g');
@@ -37,11 +35,11 @@ function get_terraform_plan_return_message(){
   toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
   toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
   
-  echo "toAdd variable:$toAdd"
-  echo "toChange variable:$toChange"
-  echo "toDestroy variable:$toDestroy"
+  echo "toAdd variable: $toAdd"
+  echo "toChange variable: $toChange"
+  echo "toDestroy variable: $toDestroy"
   
-  if [ $toAdd -eq 0 ] && [ $toChange -eq 0 ] && [ $toDestroy -eq 0 ]; then
+  if [ "$toAdd" -eq 0 ] && [ "$toChange" -eq 0 ] && [ "$toDestroy" -eq 0 ]; then
     echo -e "${BGreen}No Change detected!"
   else
     echo -e "${BBlue}State Change detected!"
