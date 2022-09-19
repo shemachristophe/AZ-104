@@ -58,13 +58,13 @@ jobs:
         run: echo "correctly returned message"       
       
     outputs:
-      planMsg: ${{ steps.plan_hello.output.planExitMsg }}
+      build-output: ${{ steps.plan_hello.output.planExitMsg }}
           
           
   apply:    
     name: Apply terraform plan
     needs: build
-    if: ${{ needs.build.outputs.planMsg == 'State Change Detected!' }}
+    if: ${{ !startsWith(needs.build.outputs.build-output, "No") }}
     runs-on: ubuntu-latest
 
     
