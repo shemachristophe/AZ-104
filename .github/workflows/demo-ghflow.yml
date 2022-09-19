@@ -46,7 +46,7 @@ jobs:
           source ../../.github/workflows/run_plan.sh
           #planMessage='$(get_terraform_plan_return_message)'
           get_terraform_plan_return_message
-          echo 'func message: ' $?
+          #echo 'func message: ' $?
           #name_func
           #echo $?
           
