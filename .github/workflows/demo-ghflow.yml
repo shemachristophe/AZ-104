@@ -62,8 +62,8 @@ jobs:
           
   apply:    
     name: Apply terraform plan
-    needs: [build]
-    if: ${{needs.build.outputs.planMsg == 'State Change Detected!'}}
+    needs: build
+    if: ${{ needs.build.outputs.planMsg == 'State Change Detected!' }}
     runs-on: ubuntu-latest
 
     
