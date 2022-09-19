@@ -14,9 +14,9 @@ function get_terraform_plan_return_message(){
   terraform plan > 'planMsg.txt'
   #$runTFCmd>'planMsg.txt'
   cat 'planMsg.txt'
-  getPlanText=$(grep "Plan" 'planMsg.txt')
+  #getPlanText=$(grep "Plan" 'planMsg.txt')
   
-  semoString=$(echo "$getPlanText" | sed "s/, /,/g" )
+  #semoString=$(echo "$getPlanText" | sed "s/, /,/g" )
   
   #echo "-----------semoString start-------------"
   #echo "$semoString"
@@ -35,17 +35,27 @@ function get_terraform_plan_return_message(){
   #toChange=$(echo "${tfArr[1]}" | sed 's/[^0-9]*//g');
   #toDestroy=$(echo "${tfArr[2]}" | sed 's/[^0-9]*//g');
   
-  toAdd=$(echo "${tfArr[0]}" | grep -o -E '[0-9]+');
-  toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
-  toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
+  #toAdd=$(echo "${tfArr[0]}" | grep -o -E '[0-9]+');
+  #toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
+  #toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
   
   #echo "toAdd variable: $toAdd"
   #echo "toChange variable: $toChange"
   #echo "toDestroy variable: $toDestroy"
   
-  if [ "$toAdd" -eq 0 ] && [ "$toChange" -eq 0 ] && [ "$toDestroy" -eq 0 ]; then
-    echo -e "${BGreen}No Change detected!"
+  noStateChange="No changes. Your infrastructure matches the configuration."
+  isPlanChanged=$(grep "$noStateChange" 'planMsg.txt')
+  
+  if [ -z "$isPlanChanged" ]
+  then
+        echo -e "${BBlue}State Change detected!"
   else
-    echo -e "${BBlue}State Change detected!"
+        echo -e "${BGreen} $noStateChange"
   fi
+  
+  #if [ "$toAdd" -eq 0 ] && [ "$toChange" -eq 0 ] && [ "$toDestroy" -eq 0 ]; then
+    #echo -e "${BGreen}No Change detected!"
+  #else
+    #echo -e "${BBlue}State Change detected!"
+  #fi
 }
