@@ -39,9 +39,9 @@ function get_terraform_plan_return_message(){
   toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
   toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
   
-  echo "toAdd variable: $toAdd"
-  echo "toChange variable: $toChange"
-  echo "toDestroy variable: $toDestroy"
+  #echo "toAdd variable: $toAdd"
+  #echo "toChange variable: $toChange"
+  #echo "toDestroy variable: $toDestroy"
   
   if [ "$toAdd" -eq 0 ] && [ "$toChange" -eq 0 ] && [ "$toDestroy" -eq 0 ]; then
     echo -e "${BGreen}No Change detected!"
