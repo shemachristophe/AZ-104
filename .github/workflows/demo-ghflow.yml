@@ -42,12 +42,11 @@ jobs:
         id: plan_hello
         shell: bash
         run: |
-          +e
           source ../../.github/workflows/run_plan.sh
-          get_terraform_plan_return_message > planFile
-          noStateChange="No changes"
-          isPlanChanged=$(grep "$noStateChange" 'planFile')
-          echo "::set-output name=planMsg::$isPlanChanged"
+          get_terraform_plan_return_message 
+          planMessage=$?
+          
+          echo "::set-output name=planMsg::$planMessage"
           
         working-directory: '.github/terraform'
         env:
