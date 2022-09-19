@@ -14,6 +14,8 @@ jobs:
   build:
     name: Validate and Plan
     runs-on: ubuntu-latest
+    outputs:
+      planMsg: ${{steps.plan_hello.output.planExitMsg }}
 
     steps:
       - uses: actions/checkout@v3
@@ -55,12 +57,7 @@ jobs:
       - name: Check for Plan Failure
         shell: bash
         if: steps.plan_hello.outputs.planExitMsg == 'State Change Detected!'
-        run: echo "correctly returned message"  
-    
-    outputs:
-      planMsg: ${{steps.plan_hello.output.planExitMsg }}
-      #if: steps.plan_hello.outcome.planExitMsg ==1
-          
+        run: echo "correctly returned message"            
           
           
   apply:    
