@@ -61,7 +61,7 @@ jobs:
           
       - name: Check for Plan Failure
         shell: bash
-        if: steps.plan_hello.outputs.planExitMsg == "No Changes Detected!"
+        if: steps.plan_hello.outputs.planExitMsg == 'No Changes Detected!'
         run: echo "correctly returned message"  
     
     outputs:
