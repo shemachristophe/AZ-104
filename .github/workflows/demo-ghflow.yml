@@ -11,7 +11,7 @@ on:
         required: true
   
 jobs:
-  build:
+  job1:
     name: Validate and Plan
     runs-on: ubuntu-latest
 
@@ -63,11 +63,11 @@ jobs:
           
   apply:    
     name: Apply terraform plan
-    needs: build
+    needs: job1
     #if: ${{ !startsWith(needs.build.outputs.build-output, 'No') }}
     #if: always() && ${{ needs.build.outputs.build-output == 'State Change Detected!'}}
     #no-approval
-    if: ${{ !contains(needs.build.outputs.build-output, 'no-approval') }}
+    if: ${{ !contains(needs.job1.outputs.build-output, 'no-approval') }}
     runs-on: ubuntu-latest
 
     
@@ -77,7 +77,7 @@ jobs:
       - name: Output Job Value
         shell: bash
         #run: echo 'output job2 check ${{needs.build.outputs.build-output}}'
-        run: echo ${{needs.build.outputs.build-output}}
+        run: echo ${{needs.job1.outputs.build-output}}
         
       - name: Setup Terraform
         uses: ./.github/actions/deploy_ci
