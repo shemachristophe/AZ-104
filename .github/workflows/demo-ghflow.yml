@@ -59,14 +59,14 @@ jobs:
     
     outputs:
       planExitMsg: ${{steps.plan_hello.output.planExitMsg }}
-        #if: steps.plan_hello.outcome ==1
+      #if: steps.plan_hello.outcome.planExitMsg ==1
           
           
           
   apply:    
     name: Apply terraform plan
     needs: build
-    if: needs.build.outputs.planExitMsg == 'State Change detected!'
+    if: needs.build.outputs.planExitMsg == 'State Change Detected!'
     runs-on: ubuntu-latest
 
     
