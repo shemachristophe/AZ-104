@@ -64,7 +64,7 @@ jobs:
   apply:    
     name: Apply terraform plan
     needs: build
-    if: ${{ !startsWith(needs.build.outputs.build-output, "No") }}
+    if: ${{ !startsWith(needs.build.outputs.build-output, 'No') }}
     runs-on: ubuntu-latest
 
     
