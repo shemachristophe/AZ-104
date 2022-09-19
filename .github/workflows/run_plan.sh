@@ -46,6 +46,7 @@ function get_terraform_plan_return_message(){
   
   noStateChange="No changes"
   isPlanChanged=$(grep "$noStateChange" 'planMsg.txt')
+  returnNoChange="No Changes Detected!"
   #echo "isPlanChanged $isPlanChanged"
   #$ echo "anything" | { grep e || true; }
   #echo '::set-output name=SELECTED_COLOR::green'
@@ -57,7 +58,7 @@ function get_terraform_plan_return_message(){
         #echo ::set-output name=some_output::"$SOME_OUTPUT"
         #echo "::set-output name=random-number::$(echo $RANDOM)"
 
-        echo "::set-output name=planExitMsg::$(${BGreen} "No Changes Detected!")"
+        echo "::set-output name=planExitMsg::$(echo $returnNoChange)"
         echo -e "${BGreen}No Changes Detected!"
   fi
   
