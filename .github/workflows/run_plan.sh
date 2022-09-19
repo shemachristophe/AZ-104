@@ -35,7 +35,7 @@ function get_terraform_plan_return_message(){
   
   toAdd=$(echo "${tfArr[0]}" | grep -o -E '[0-9]+');
   toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
-  toDestroy=$(echo "${tfArr[2]}" | sgrep -o -E '[0-9]+');
+  toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
   
   echo "toAdd variable:$toAdd"
   echo "toChange variable:$toChange"
