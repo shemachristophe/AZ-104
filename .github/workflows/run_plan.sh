@@ -45,7 +45,7 @@ function get_terraform_plan_return_message(){
   
   noStateChange="No changes"
   isPlanChanged=$(grep -q "$noStateChange" 'planMsg.txt' || true)
-  #echo "isPlanChanged $isPlanChanged"
+  echo "isPlanChanged $isPlanChanged"
   #$ echo "anything" | { grep e || true; }
   
   if [ "$isPlanChanged" = "" ]
