@@ -45,13 +45,13 @@ function get_terraform_plan_return_message(){
   
   noStateChange="No changes. Your infrastructure matches the configuration."
   isPlanChanged=$(grep "$noStateChange" 'planMsg.txt')
-  
-  if [ -z "$isPlanChanged" ]
-  then
-        echo -e "${BBlue}State Change detected!"
-  else
-        echo -e "${BGreen}hello"
-  fi
+  echo "isPlanChanged $isPlanChanged"
+  #if [ -z "$isPlanChanged" ]
+  #then
+        #echo -e "${BBlue}State Change detected!"
+  #else
+        #echo -e "${BGreen}hello"
+  #fi
   
   #if [ "$toAdd" -eq 0 ] && [ "$toChange" -eq 0 ] && [ "$toDestroy" -eq 0 ]; then
     #echo -e "${BGreen}No Change detected!"
