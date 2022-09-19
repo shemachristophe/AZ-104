@@ -55,8 +55,9 @@ function get_terraform_plan_return_message(){
         echo -e "${BBlue}State Change Detected!"
   else
         #echo ::set-output name=some_output::"$SOME_OUTPUT"
+        #echo "::set-output name=random-number::$(echo $RANDOM)"
 
-        echo ::set-output name=planExitMsg::$(${BGreen} "No Changes Detected!"})
+        echo "::set-output name=planExitMsg::$(${BGreen} "No Changes Detected!")"
         echo -e "${BGreen}No Changes Detected!"
   fi
   
