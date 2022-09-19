@@ -65,7 +65,9 @@ jobs:
     name: Apply terraform plan
     needs: build
     #if: ${{ !startsWith(needs.build.outputs.build-output, 'No') }}
-    if: always() && ${{ needs.build.outputs.build-output == 'State Change Detected!'}}
+    #if: always() && ${{ needs.build.outputs.build-output == 'State Change Detected!'}}
+    #no-approval
+    if: ${{ !contains(needs.build.outputs.build-output, 'no-approval') }}
     runs-on: ubuntu-latest
 
     
