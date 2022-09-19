@@ -54,8 +54,8 @@ function get_terraform_plan_return_message(){
   then
         echo -e "${BBlue}::set-output name=SELECTED_COLOR::State Change Detected!"
   else
-        echo ::set-output name=planExitMsg::$(${BGreen}No Changes Detected!})
-        echo -e "${BGreen}::set-output name=SELECTED_COLOR::No Changes Detected!"
+        #echo ::set-output name=planExitMsg::$(${BGreen}No Changes Detected!})
+        echo -e "${BGreen}No Changes Detected!"
   fi
   
   #if [ "$toAdd" -eq 0 ] && [ "$toChange" -eq 0 ] && [ "$toDestroy" -eq 0 ]; then
