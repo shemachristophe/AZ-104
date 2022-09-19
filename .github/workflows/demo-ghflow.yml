@@ -75,7 +75,7 @@ jobs:
       - name: Output Job Value
         shell: bash
         #run: echo 'output job2 check ${{needs.build.outputs.build-output}}'
-        run: echo ${{needs.job1.outputs.build-output}}
+        run: echo ${{needs.build.outputs.build-output}}
         
       - name: Setup Terraform
         uses: ./.github/actions/deploy_ci
