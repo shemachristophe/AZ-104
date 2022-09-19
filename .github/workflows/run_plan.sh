@@ -20,7 +20,7 @@ function get_terraform_plan_return_message(){
   echo "-----------valResult start-------------"
   echo "$valResult"
   echo "-----------valResult end-------------"
-  semoString=$(echo $demoString | sed "s/, /,/g")
+  semoString=$((echo $demoString | sed "s/, /,/g" ))
   
   echo "-----------semoString start-------------"
   echo "$semoString"
@@ -30,8 +30,8 @@ function get_terraform_plan_return_message(){
   #IFS=',' read -a tfArr <<< "$semoString"  
   IFS='(, )' read -a tfArr <<< "$$valResult"
   
-  echo "yooo: ${tfArr[0]}"
-  toAdd=$(echo ${tfArr[0]} | sed 's/[^0-9]*//g') ;
+  echo "yooo: ${ tfArr[0] }"
+  toAdd=$(echo ${ tfArr[0] } | sed 's/[^0-9]*//g') ;
   toChange=$(echo ${tfArr[1]} | sed 's/[^0-9]*//g') ;
   toDestroy=$(echo ${tfArr[2]} | sed 's/[^0-9]*//g') ;
   
