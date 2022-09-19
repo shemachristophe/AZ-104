@@ -30,17 +30,14 @@ function get_terraform_plan_return_message(){
   #echo "${STRING//[^0-9]/}"
   #echo 'foo = 1700;' | sed -n -E -e 's/^foo = ([0-9]+).*/\1/p'
   
-  toAdd=$(echo "${tfArr[0]}" | sed -n -E -e 's/^foo = ([0-9]+).*/\1/p');
-  toChange=$(echo "${tfArr[1]}" | sed -n -E -e 's/^foo = ([0-9]+).*/\1/p');
-  toDestroy=$(echo "${tfArr[2]}" | sed -n -E -e 's/^foo = ([0-9]+).*/\1/p');
   
   #toAdd=$(echo "${tfArr[0]}" | sed 's/[^0-9]*//g');
   #toChange=$(echo "${tfArr[1]}" | sed 's/[^0-9]*//g');
   #toDestroy=$(echo "${tfArr[2]}" | sed 's/[^0-9]*//g');
   
-  #toAdd=$(echo "${tfArr[0]}" | grep -o -E '[0-9]+');
-  #toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
-  #toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
+  toAdd=$(echo "${tfArr[0]}" | grep -o -E '[0-9]+');
+  toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
+  toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
   
   echo "toAdd variable: $toAdd"
   echo "toChange variable: $toChange"
