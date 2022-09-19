@@ -50,7 +50,7 @@ function get_terraform_plan_return_message(){
   then
         echo -e "${BBlue}State Change detected!"
   else
-        echo -e "${BGreen} $noStateChange"
+        echo -e "${BGreen}hello"
   fi
   
   #if [ "$toAdd" -eq 0 ] && [ "$toChange" -eq 0 ] && [ "$toDestroy" -eq 0 ]; then
