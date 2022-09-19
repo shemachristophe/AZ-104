@@ -46,7 +46,7 @@ jobs:
           get_terraform_plan_return_message 
           planMessage=$?
           
-          echo "::set-output name=planMsg::$planMessage"
+          #echo "::set-output name=planMsg::$planMessage"
           echo "printing output"
           echo "$?"
           echo "planMessage: $planMessage"
@@ -59,9 +59,10 @@ jobs:
           AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           TF_CLI_ARGS: '-var-file="../../.github/terraform/env/dev.tfvars"'
           
-      #- name: Check for Plan Failure
-        #if: steps.plan_hello.outputs.planMessage == "Error Detected!"
-        #run: exit 1  
+      - name: Check for Plan Failure
+        shell: bash
+        if: steps.plan_hello.outputs.planExitMsg == "No Changes Detected!"
+        run: echo "correctly returned message"  
     
     outputs:
       planExitCode: ${{steps.plan_hello.output.planMessage }}
@@ -72,7 +73,7 @@ jobs:
   apply:
     name: Apply terraform plan
     needs: build
-    if: needs.build.outputs.planExitCode == 'State Change detected!'
+    if: needs.build.outputs.planExitMsg == 'State Change detected!'
     runs-on: ubuntu-latest
 
     
