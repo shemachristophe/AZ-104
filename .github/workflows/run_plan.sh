@@ -20,7 +20,7 @@ function get_terraform_plan_return_message(){
   echo "-----------valResult start-------------"
   echo "$valResult"
   echo "-----------valResult end-------------"
-  semoString=$((echo $demoString | sed "s/, /,/g" ))
+  semoString=$(echo $valResult | sed "s/, /,/g" )
   
   echo "-----------semoString start-------------"
   echo "$semoString"
@@ -30,10 +30,10 @@ function get_terraform_plan_return_message(){
   #IFS=',' read -a tfArr <<< "$semoString"  
   IFS='(, )' read -a tfArr <<< "$$valResult"
   
-  echo "yooo: ${ tfArr[0] }"
-  toAdd=$(echo ${ tfArr[0] } | sed 's/[^0-9]*//g') ;
-  toChange=$(echo ${tfArr[1]} | sed 's/[^0-9]*//g') ;
-  toDestroy=$(echo ${tfArr[2]} | sed 's/[^0-9]*//g') ;
+  echo "yooo: ${tfArr[0]}"
+  toAdd=$(echo "${tfArr[0]}" | sed 's/[^0-9]*//g') ;
+  toChange=$(echo "${tfArr[1]}" | sed 's/[^0-9]*//g') ;
+  toDestroy=$(echo "${tfArr[2]}" | sed 's/[^0-9]*//g') ;
   
   echo "toAdd variable:$toAdd"
   echo "toChange variable:$toChange"
@@ -42,8 +42,7 @@ function get_terraform_plan_return_message(){
   if [ $toAdd -eq 0 ] && [ $toChange -eq 0 ] && [ $toDestroy -eq 0 ]; then
     echo -e "${BGreen}No Change detected!"
   else
-    echo "Zion: $valResult"
-    #echo -e "${BBlue}State Change detected!"
+    echo -e "${BBlue}State Change detected!"
   fi
 }
 
