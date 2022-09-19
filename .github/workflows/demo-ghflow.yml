@@ -58,9 +58,7 @@ jobs:
         run: echo 'output is ${{steps.plan_hello.outputs.planExitMsg}}'     
       
     outputs:
-      build-output: ${{ steps.plan_hello.output.planExitMsg }}
-          
-          
+      build-output: ${{ steps.plan_hello.output.planExitMsg }}         
   apply:    
     name: Apply terraform plan
     needs: job1
