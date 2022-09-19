@@ -27,13 +27,13 @@ function get_terraform_plan_return_message(){
   IFS=',' read -a tfArr <<< "$semoString"
   
   
-  #toAdd=$(echo "${tfArr[0]}" | sed 's/[^0-9]*//g');
-  #toChange=$(echo "${tfArr[1]}" | sed 's/[^0-9]*//g');
-  #toDestroy=$(echo "${tfArr[2]}" | sed 's/[^0-9]*//g');
+  toAdd=$(echo "${tfArr[0]}" | sed 's/[^0-9]*//g');
+  toChange=$(echo "${tfArr[1]}" | sed 's/[^0-9]*//g');
+  toDestroy=$(echo "${tfArr[2]}" | sed 's/[^0-9]*//g');
   
-  toAdd=$(echo "${tfArr[0]}" | grep -o -E '[0-9]+');
-  toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
-  toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
+  #toAdd=$(echo "${tfArr[0]}" | grep -o -E '[0-9]+');
+  #toChange=$(echo "${tfArr[1]}" | grep -o -E '[0-9]+');
+  #toDestroy=$(echo "${tfArr[2]}" | grep -o -E '[0-9]+');
   
   echo "toAdd variable: $toAdd"
   echo "toChange variable: $toChange"
