@@ -16,7 +16,7 @@ runs:
   using: "composite"
   steps:
   
-    - name: Terraform Init in ${{ ENV }}
+    - name: Terraform Init in ${{ inputs.ENV }}
       shell: bash
       run: terraform init
       working-directory: '.github/terraform'
@@ -28,7 +28,7 @@ runs:
     - name: Terraform Apply   
       shell: bash
       run: terraform apply -auto-approve
-      working-directory: '.github/${{ DIRECTORY }}'
+      working-directory: '.github/${{ inputs.DIRECTORY }}'
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         AWS_ACCESS_KEY_ID:  ${{ inputs.AWS_ACCESS_KEY_ID }}
