@@ -7,12 +7,16 @@ inputs:
     required: true
   AWS_SECRET_ACCESS_KEY: 
     required: true
+  ENV:
+    required: true
+  DIRECTORY:
+    required: true
 
 runs:
   using: "composite"
   steps:
   
-    - name: Terraform Init
+    - name: Terraform Init in ${{ ENV }}
       shell: bash
       run: terraform init
       working-directory: '.github/terraform'
@@ -24,7 +28,7 @@ runs:
     - name: Terraform Apply   
       shell: bash
       run: terraform apply -auto-approve
-      working-directory: '.github/terraform'
+      working-directory: '.github/${{ DIRECTORY }}'
       env:
         GITHUB_TOKEN: ${{ inputs.GITHUB_TOKEN }}
         AWS_ACCESS_KEY_ID:  ${{ inputs.AWS_ACCESS_KEY_ID }}
