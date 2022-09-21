@@ -9,6 +9,12 @@ on:
         required: true
       AWS_SECRET_ACCESS_KEY:
         required: true
+    inputs:
+      MYENV:
+        required: true
+        description: "my env"
+        type: string
+    
   
 jobs:
   build:
@@ -22,7 +28,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2.0.0
       
         
-      - name: Terraform Init
+      - name: Terraform Init ${{ inputs.MYENV }}
         run: terraform init
         working-directory: '.github/terraform'
         env:
