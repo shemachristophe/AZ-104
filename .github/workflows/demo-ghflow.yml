@@ -26,6 +26,8 @@ jobs:
       
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
+        with:
+          terraform_wrapper: false
       
         
       - name: Terraform Init ${{ inputs.MYENV }}
