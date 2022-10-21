@@ -12,7 +12,7 @@ BWhite='\033[1;37m'       # White
 
 function get_terraform_plan_return_message(){
   set +e
-  terraform plan > 'planMsg.txt'
+  terraform plan > '/tmp/planMsg.txt'
   #$runTFCmd>'planMsg.txt'
   
   #cat 'planMsg.txt'
