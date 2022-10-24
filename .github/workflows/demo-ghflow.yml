@@ -63,7 +63,12 @@ jobs:
       - name: Check for Plan Failure
         shell: bash
         #if: steps.plan_hello.outputs.planExitMsg == 'State Change Detected!'
-        run: echo 'output is ${{steps.plan_hello.outputs.planExitMsg}}'     
+        run: echo 'output is ${{steps.plan_hello.outputs.planExitMsg}}'   
+        
+      - name: Terraform show
+        id: show
+        run: terraform show -no-color tf.plan 2>&1 > /tmp/plan.txt
+        
       
     outputs:
       build-output: ${{ steps.plan_hello.outputs.planExitMsg }}
@@ -87,7 +92,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require("fs");
-            const plan = fs.readFileSync("/tmp/planMsg.txt", "utf8");
+            const plan = fs.readFileSync("/tmp/plan.txt", "utf8");
             const maxGitHubBodyCharacters = 65536;
 
             function chunkSubstr(str, size) {
