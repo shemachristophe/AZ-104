@@ -66,14 +66,15 @@ jobs:
         run: echo 'output is ${{steps.plan_hello.outputs.planExitMsg}}'     
       
     outputs:
-      build-output: ${{ steps.plan_hello.outputs.planExitMsg }}         
+      build-output: ${{ steps.plan_hello.outputs.planExitMsg }}
+      
   apply:    
     name: Apply terraform plan
     needs: build
     #if: ${{ !startsWith(needs.build.outputs.build-output, 'No') }}
     #if: always() && ${{ needs.build.outputs.build-output == 'State Change Detected!'}}
     #no-approval
-    if: ${{ !contains(needs.build.outputs.build-output, 'no-approval') && inputs.ENVIRONMENT == 'CI' }}
+    
     runs-on: ubuntu-latest
 
     
@@ -125,7 +126,8 @@ jobs:
         #run: echo 'output job2 check ${{needs.build.outputs.build-output}}'
         run: echo ${{needs.build.outputs.build-output}}
         
-      - name: Setup Terraform
+      - name: Apply Terraform to Prod
+        if: ${{ !contains(needs.build.outputs.build-output, 'no-approval') }}
         uses: ./.github/actions/deploy_ci
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
