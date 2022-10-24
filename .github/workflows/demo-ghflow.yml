@@ -51,7 +51,7 @@ jobs:
         shell: bash
         run: |
           source ../../.github/workflows/run_plan.sh
-          get_terraform_plan_return_message 
+          get_terraform_plan_return_message > tf.plan
           
         working-directory: '.github/terraform'
         env:
