@@ -74,9 +74,9 @@ jobs:
         #if: steps.plan_hello.outputs.planExitMsg == 'State Change Detected!'
         run: echo 'output is ${{steps.plan_hello.outputs.planExitMsg}}'   
         
-      - name: Terraform show
-        id: show
-        run: terraform show -no-color tf.plan 2>&1 > /tmp/plan.txt
+      #- name: Terraform show
+        #id: show
+        #run: terraform show -no-color tf.plan 2>&1 > /tmp/plan.txt
         
       
     outputs:
