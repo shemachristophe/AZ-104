@@ -15,7 +15,7 @@ function get_terraform_plan_return_message(){
   terraform plan > '/tmp/planMsg.txt'
   #$runTFCmd>'planMsg.txt'
   
-  cat 'planMsg.txt'
+  cat '/tmp/planMsg.txt'
   
   #getPlanText=$(grep "Plan" 'planMsg.txt')
   
