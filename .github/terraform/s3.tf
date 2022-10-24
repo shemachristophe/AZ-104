@@ -3,7 +3,7 @@ resource "aws_s3_bucket" "s3Bucket" {
   tags = {
     Name = "Shema Bucket"
     Environment = "ci"
-    Owner = 'Shema Christophe
+    Owner = "Shema Christophe"
   }
 }
 
