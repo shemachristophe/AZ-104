@@ -61,7 +61,7 @@ jobs:
           TF_CLI_ARGS: '-var-file="../../.github/terraform/env/dev.tfvars"'
       
       - name: Real Terraform Plan
-        run: terraform plan -input=false -no-color -out tf.plan               
+        run: terraform plan -no-color -out tf.plan > /tmp/plan.txt               
         working-directory: '.github/terraform'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
