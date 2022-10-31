@@ -10,7 +10,7 @@ on:
   
 jobs:
   dev:
-    uses: ./.github/workflows/demo-ghflow.yml
+    uses: './.github/workflows/demo-ghflow.yml'
     secrets:
       #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
