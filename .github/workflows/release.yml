@@ -2,7 +2,7 @@ name: Prod Release
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "demo-branch" ]
   pull_request:
     branches: [ "main" ]
 
