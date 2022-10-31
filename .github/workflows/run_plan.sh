@@ -12,7 +12,10 @@ BWhite='\033[1;37m'       # White
 
 function get_terraform_plan_return_message(){
   set +e
-  terraform plan > '/tmp/planMsg.txt'
+  #terraform plan > '/tmp/planMsg.txt'
+  
+  terraform plan -input=false -no-color -out tf.plan
+  cat 'tf.plan'
   #$runTFCmd>'planMsg.txt'
   
   #cat 'planMsg.txt'
@@ -48,8 +51,11 @@ function get_terraform_plan_return_message(){
   
   noStateChange="No changes"
   #isPlanChanged=$(grep "$noStateChange" 'planMsg.txt')
-  isPlanChanged=$(grep "No changes" 'planMsg.txt')
+  
+  #isPlanChanged=$(grep "No changes" 'planMsg.txt')
+  isPlanChanged=$(grep "No changes" 'tf.plan')
   returnNoChange="No Changes Detected!"
+  
   #echo "isPlanChanged $isPlanChanged"
   #$ echo "anything" | { grep e || true; }
   #echo '::set-output name=SELECTED_COLOR::green'
