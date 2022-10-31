@@ -6,16 +6,18 @@ BRed='\033[1;31m'         # Red
 BGreen='\033[1;32m'       # Green
 BYellow='\033[1;33m'      # Yellow
 BBlue='\033[1;34m'        # Blue
-BPurple='\033[1;35m'      # Purple
-BCyan='\033[1;36m'        # Cyan
 BWhite='\033[1;37m'       # White
 
 function get_terraform_plan_return_message(){
   set +e
-  terraform plan > '/tmp/planMsg.txt'
+  #terraform plan > '/tmp/planMsg.txt'
+  
+  terraform plan -input=false -no-color -out tf.plan
+  cat 'tf.plan'
+  $pwd
   #$runTFCmd>'planMsg.txt'
   
-  cat '/tmp/planMsg.txt'
+  #cat 'planMsg.txt'
   
   #getPlanText=$(grep "Plan" 'planMsg.txt')
   
@@ -48,15 +50,20 @@ function get_terraform_plan_return_message(){
   
   noStateChange="No changes"
   #isPlanChanged=$(grep "$noStateChange" 'planMsg.txt')
-  isPlanChanged=$(grep "No changes" 'planMsg.txt')
+  
+  #isPlanChanged=$(grep "No changes" 'planMsg.txt')
+  isPlanChanged=$(grep "No changes" 'tf.plan')
   returnNoChange="No Changes Detected!"
+  name="planExitMsg"
+  
   #echo "isPlanChanged $isPlanChanged"
   #$ echo "anything" | { grep e || true; }
   #echo '::set-output name=SELECTED_COLOR::green'
   #        run: echo ::set-output name=docker_tag::$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}
   if [ -z "$isPlanChanged" ]
   then
-        echo "::set-output name=planExitMsg::$(echo 'State Change Detected!')"
+        #echo "::set-output name=planExitMsg::$(echo 'State Change Detected!')"
+        echo "{name=planExitMsg}={$(echo 'State Change Detected!')}" >> $GITHUB_OUTPUT
         echo -e "${BBlue}State Change Detected!"
   else
         #echo ::set-output name=some_output::"$SOME_OUTPUT"
