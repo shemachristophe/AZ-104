@@ -64,6 +64,15 @@ jobs:
         shell: bash
         #if: steps.plan_hello.outputs.planExitMsg == 'State Change Detected!'
         run: echo 'output is ${{steps.plan_hello.outputs.planExitMsg}}'     
+        
+      - name: Terraform Show
+        id: show
+        run: terraform show -no-color tf.plan 2>&1 > /tmp/plan.txt
+        working-directory: '.github/terraform'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       
     outputs:
       build-output: ${{ steps.plan_hello.outputs.planExitMsg }}         
@@ -86,7 +95,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const fs = require("fs");
-            const plan = fs.readFileSync("/tmp/planMsg.txt", "utf8");
+            const plan = fs.readFileSync("/tmp/plan.txt", "utf8");
             const maxGitHubBodyCharacters = 65536;
 
             function chunkSubstr(str, size) {
