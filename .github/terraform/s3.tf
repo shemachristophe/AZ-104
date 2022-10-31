@@ -8,5 +8,5 @@ resource "aws_s3_bucket" "s3Bucket" {
 
 resource "aws_s3_bucket_acl" "shema-cool-tf-bucket-acl" {
   bucket = aws_s3_bucket.s3Bucket.id
-  acl    = "public-read"
+  acl    = "private"
 }
