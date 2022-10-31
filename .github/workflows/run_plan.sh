@@ -12,7 +12,8 @@ function get_terraform_plan_return_message(){
   set +e
   #terraform plan > '/tmp/planMsg.txt'
   
-  terraform plan -input=false -no-color -out tf.plan
+  #terraform plan -input=false -no-color -out tf.plan
+  terraform plan -out tf.plan
   cat 'tf.plan'
   $pwd
   #$runTFCmd>'planMsg.txt'
