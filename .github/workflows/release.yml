@@ -3,8 +3,11 @@ name: Prod Release
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - ".github"
   pull_request:
     branches: [ "main" ]
+  
 
   workflow_dispatch:
   
