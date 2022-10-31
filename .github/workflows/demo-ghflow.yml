@@ -73,8 +73,7 @@ jobs:
         shell: bash
         #if: steps.plan_hello.outputs.planExitMsg == 'State Change Detected!'
         run: echo 'output is ${{steps.plan_hello.outputs.planExitMsg}}'   
-        
-     
+           
         
       - name: Terraform Show
         id: show
