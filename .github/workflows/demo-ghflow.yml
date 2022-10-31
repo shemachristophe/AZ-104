@@ -50,6 +50,7 @@ jobs:
         id: plan_hello
         shell: bash
         run: |
+          pwd
           source ../../.github/workflows/run_plan.sh
           get_terraform_plan_return_message 
           
