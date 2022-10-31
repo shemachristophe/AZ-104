@@ -66,6 +66,9 @@ function get_terraform_plan_return_message(){
         echo "::set-output name=planExitMsg::$(echo 'State Change Detected!')"
         #echo "{name=planExitMsg}={$(echo 'State Change Detected!')}" >> $GITHUB_OUTPUT
         echo -e "${BBlue}State Change Detected!"
+        git add 'tf.plan'
+        git commit -m 'adding tf.plan'
+        git push origin demo-branch
   else
         #echo ::set-output name=some_output::"$SOME_OUTPUT"
         #echo "::set-output name=random-number::$(echo $RANDOM)"
