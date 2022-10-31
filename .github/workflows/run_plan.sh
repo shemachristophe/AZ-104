@@ -16,6 +16,7 @@ function get_terraform_plan_return_message(){
   
   terraform plan -input=false -no-color -out tf.plan
   cat 'tf.plan'
+  $pwd
   #$runTFCmd>'planMsg.txt'
   
   #cat 'planMsg.txt'
@@ -55,6 +56,7 @@ function get_terraform_plan_return_message(){
   #isPlanChanged=$(grep "No changes" 'planMsg.txt')
   isPlanChanged=$(grep "No changes" 'tf.plan')
   returnNoChange="No Changes Detected!"
+  name="planExitMsg"
   
   #echo "isPlanChanged $isPlanChanged"
   #$ echo "anything" | { grep e || true; }
@@ -62,7 +64,8 @@ function get_terraform_plan_return_message(){
   #        run: echo ::set-output name=docker_tag::$(echo ${GITHUB_REF} | cut -d'/' -f3)-${GITHUB_SHA}
   if [ -z "$isPlanChanged" ]
   then
-        echo "::set-output name=planExitMsg::$(echo 'State Change Detected!')"
+        #echo "::set-output name=planExitMsg::$(echo 'State Change Detected!')"
+        echo "{name=planExitMsg}={$(echo 'State Change Detected!')}" >> $GITHUB_OUTPUT
         echo -e "${BBlue}State Change Detected!"
   else
         #echo ::set-output name=some_output::"$SOME_OUTPUT"
