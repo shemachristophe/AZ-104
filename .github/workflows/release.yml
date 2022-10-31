@@ -4,7 +4,7 @@ on:
   push:
     branches: [ "demo-branch" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "demo-branch" ]
 
   workflow_dispatch:
   
