@@ -2,7 +2,7 @@ name: Prod Release
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "demo-app-flow" ]
   pull_request:
     branches: [ "main" ]
 
