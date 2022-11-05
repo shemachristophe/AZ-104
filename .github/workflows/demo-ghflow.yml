@@ -82,7 +82,8 @@ jobs:
     #if: ${{ !startsWith(needs.build.outputs.build-output, 'No') }}
     #if: always() && ${{ needs.build.outputs.build-output == 'State Change Detected!'}}
     #no-approval
-    if: ${{ !contains(needs.build.outputs.build-output, 'no-approval') && inputs.ENVIRONMENT == 'CI' }}
+    #if: ${{ !contains(needs.build.outputs.build-output, 'no-approval') && inputs.ENVIRONMENT == 'CI' }}
+    if: github.event.pull_request.draft == true
     runs-on: ubuntu-latest
 
     
