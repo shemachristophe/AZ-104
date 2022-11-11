@@ -10,8 +10,8 @@ on:
   pull_request: #runs when PR is merged
     types: [opened, closed] 
       #- closed
-    branches: 
-      - 'demo-app-flow'
+    #branches: 
+      #- 'demo-app-flow'
     paths:
       - '.github'
 
