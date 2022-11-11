@@ -3,8 +3,10 @@ name: Prod_Release
 on:
   push:
     branches: [ "demo-app-flow" ]
-  pull_request_review:
-    types: [submitted]
+  #pull_request_review:
+    #types: [submitted]
+  pull_request:
+    branches: [main]
 
   workflow_dispatch:
   
