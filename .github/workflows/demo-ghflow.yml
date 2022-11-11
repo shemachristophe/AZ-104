@@ -75,7 +75,7 @@ jobs:
     #no-approval
     #if: ${{ !contains(needs.build.outputs.build-output, 'no-approval') && inputs.ENVIRONMENT == 'CI' }}
     #if: github.event.pull_request.draft == true
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true && github.head_ref == 'main'
     runs-on: ubuntu-latest
 
     
