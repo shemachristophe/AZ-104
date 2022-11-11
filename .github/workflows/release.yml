@@ -5,10 +5,15 @@ on:
     #branches: [ "demo-app-flow" ]
   #pull_request_review:
     #types: [submitted]
-  pull_request:
-    branches: [main]
-  #pull_request: #runs when PR is merged
-    #types: [opened, closed] 
+  #pull_request:
+    #branches: [main]
+  pull_request: #runs when PR is merged
+    types: [opened, closed] 
+    paths:
+      - 'demo'
+  push:
+    paths:
+      - 'demo'
       #- closed
     #branches: 
       #- 'demo-app-flow'
