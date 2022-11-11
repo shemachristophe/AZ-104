@@ -1,12 +1,19 @@
 name: Prod_Release
 
 on:
-  push:
-    branches: [ "demo-app-flow" ]
+  #push:
+    #branches: [ "demo-app-flow" ]
   #pull_request_review:
     #types: [submitted]
-  pull_request:
-    branches: [main]
+  #pull_request:
+    #branches: [main]
+  pull_request: #runs when PR is merged
+    types: 
+      - closed
+    branches: 
+      - 'main'
+    paths:
+      - '.github'
 
   workflow_dispatch:
   
