@@ -1,10 +1,24 @@
-name: Prod Release
+name: Prod_Release
 
 on:
+  #push:
+    #branches: [ "demo-app-flow" ]
+  #pull_request_review:
+    #types: [submitted]
+  #pull_request:
+    #branches: [main]
+  pull_request: #runs when PR is merged
+    types: [opened, closed] 
+    paths:
+      - 'demo/*'
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    paths:
+      - 'demo/*'
+      #- closed
+    #branches: 
+      #- 'demo-app-flow'
+    #paths:
+      #- 'demo'
 
   workflow_dispatch:
   

@@ -2,13 +2,11 @@ name: CI PR
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "demo-app-flow" ]
   pull_request:
     branches: [ "main" ]
 
   workflow_dispatch:
-    branches:
-    - task/demo-branch
   
 jobs:
   build:
