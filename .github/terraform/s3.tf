@@ -2,7 +2,7 @@ resource "aws_s3_bucket" "s3Bucket" {
   bucket = "shema-cool-tf-bucket"
   tags = {
     Name = "Shema Bucket"
-    Environment = "ci"
+    Environment = "dev"
   }
 }
 
