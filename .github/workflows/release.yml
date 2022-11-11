@@ -10,10 +10,10 @@ on:
   pull_request: #runs when PR is merged
     types: [opened, closed] 
     paths:
-      - 'demo'
-  push:
-    paths:
-      - 'demo'
+      - 'demo/*'
+  #push:
+    #paths:
+      #- 'demo'
       #- closed
     #branches: 
       #- 'demo-app-flow'
