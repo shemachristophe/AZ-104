@@ -13,7 +13,7 @@ on:
     #branches: 
       #- 'demo-app-flow'
     paths:
-      - '.github'
+      - './.github'
 
   workflow_dispatch:
   
