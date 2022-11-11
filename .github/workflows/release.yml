@@ -11,9 +11,9 @@ on:
     types: [opened, closed] 
     paths:
       - 'demo/*'
-  #push:
-    #paths:
-      #- 'demo'
+  push:
+    paths:
+      - 'demo/*'
       #- closed
     #branches: 
       #- 'demo-app-flow'
