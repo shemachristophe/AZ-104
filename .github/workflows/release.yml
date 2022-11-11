@@ -12,9 +12,9 @@ on:
       - opened
     paths:
       - 'demo/*'
-  #push:
-    #paths:
-      #- 'demo/*'
+  push:
+    paths:
+      - 'demo/*'
       #- closed
     #branches: 
       #- 'demo-app-flow'
