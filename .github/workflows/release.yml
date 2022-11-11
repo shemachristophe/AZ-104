@@ -12,8 +12,8 @@ on:
       #- closed
     #branches: 
       #- 'demo-app-flow'
-    paths:
-      - './.github'
+    #paths:
+      #- './.github'
 
   workflow_dispatch:
   
