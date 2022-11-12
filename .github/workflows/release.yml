@@ -8,8 +8,8 @@ on:
   #pull_request:
     #branches: [main]
   pull_request: #runs when PR is merged
-    types: 
-      - opened
+    types: [opened, closed]
+      #- opened
     paths:
       - 'demo/*'
   #push:
